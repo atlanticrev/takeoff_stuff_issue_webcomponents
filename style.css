@@ -1,0 +1,333 @@
+/*
+ * Globals
+ */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+html {
+    font-family: sans-serif;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: inherit;
+    height: inherit;
+}
+
+#root {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgray;
+}
+
+
+/**
+ * Animations
+ */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.change-data-animation {
+    animation: 1s blink;
+}
+
+
+/**
+ * Contacts List
+ */
+takeoff-contact-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-height: 800px;
+    /*min-height: 800px;*/
+    max-width: 1200px;
+    min-width: 960px;
+    overflow-y: scroll;
+    background-color: #7d7d7c;
+    /*transition: all 0.5s ease-out;*/
+}
+
+
+/**
+ * Contact
+ */
+takeoff-contact {
+    --opacity: 1;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+    width: 100%;
+    padding: 25px;
+    opacity: var(--opacity);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background-color: #1f1f1f;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: opacity 0.25s ease-out;
+}
+
+takeoff-contact > .contact-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+takeoff-contact > .contact-info {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 1.1rem;
+    font-weight: normal;
+}
+
+takeoff-contact > .contact-info > span {
+    margin-bottom: 10px;
+}
+
+takeoff-contact > .contact-info > .contact-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+takeoff-contact.fade-out {
+    --opacity: 0.25;
+}
+
+
+/**
+ * Buttons
+ */
+button {
+    display: block;
+    padding: 15px 25px;
+    background-color: #7d7d7c;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    outline: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #fff;
+}
+
+button:active {
+    background-color: #000;
+    color: #fff;
+}
+
+button:not(:last-child) {
+    margin-right: 5px;
+}
+
+
+/**
+ * Login
+ */
+takeoff-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 65px;
+    min-width: 400px;
+    min-height: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background-color: #1f1f1f;
+    color: #7d7d7c;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+takeoff-login > .login-text {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+takeoff-login > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+takeoff-login > form > label {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+takeoff-login > form > label > input {
+    width: 100%;
+    min-height: 50px;
+    background-color: lightgray;
+    padding: 0 15px;
+    font-size: 1.2rem;
+}
+
+takeoff-login > form > .login-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+/**
+ * Modal
+ */
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 400px;
+    min-height: 300px;
+    padding: 60px 50px;
+    opacity: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background-color: #1f1f1f;
+    color: #7d7d7c;
+    transition: opacity 0.3s ease-out;
+    z-index: 2;
+}
+
+.modal > .modal-text {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modal > .modal-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+takeoff-confirm-modal.modal {
+    padding: 60px 85px;
+}
+
+
+/**
+ * Overlay
+ */
+takeoff-overlay {
+    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+takeoff-overlay.animate {
+    opacity: 0;
+}
+
+takeoff-overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+
+/**
+ * Contact list controls
+ */
+.contact-list-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 5px;
+}
+
+.contacts-search {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    width: 500px;
+    padding: 10px;
+    background-color: #7d7d7c;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    outline: none;
+}
+
+.contacts-search > input {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: lightgray;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+}
+
+
+/**
+ * Add contact form
+ */
+form#add-contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+}
+
+form#add-contact-form > label {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+form#add-contact-form > label > input {
+    width: 100%;
+    min-height: 50px;
+    background-color: lightgray;
+    padding: 0 15px;
+    font-size: 1.2rem;
+}
